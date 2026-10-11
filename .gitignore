@@ -1,0 +1,12 @@
+.env
+worker.env
+credentials.json
+token.json
+*.db
+*.db-*
+worktrees/
+logs/
+.bin/
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/

@@ -1,0 +1,19 @@
+version: "2"
+
+linters:
+  settings:
+    errcheck:
+      # These closes cannot lose data: rows are drained and rows.Err() is checked, Rollback after
+      # Commit is a no-op whose primary error is already returned, and response bodies are read-only.
+      exclude-functions:
+        - (*database/sql.Rows).Close
+        - (*database/sql.Tx).Rollback
+        - (io.ReadCloser).Close
+
+# Imports are grouped by hand (standard, module, third-party); goimports -local would reorder them.
+formatters:
+  enable:
+    - gofmt
+  settings:
+    gofmt:
+      simplify: true
